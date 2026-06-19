@@ -1,1 +1,215 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===============================
+   Google Font
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ===============================
+   Variables
+================================ */
+
+:root{
+
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --sidebar:#0f172a;
+
+    --background:#f8fafc;
+
+    --card:#ffffff;
+
+    --success:#10b981;
+
+    --danger:#ef4444;
+
+    --warning:#f59e0b;
+
+    --text:#334155;
+
+    --border:#e2e8f0;
+
+}
+
+/* ===============================
+   Global
+================================ */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+.page-container{
+
+    padding:30px;
+
+}
+
+/* ===============================
+   Cards
+================================ */
+
+.card{
+
+    border:none;
+
+    border-radius:15px;
+
+    background:var(--card);
+
+    box-shadow:
+
+    0 4px 20px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ===============================
+   Buttons
+================================ */
+
+.btn{
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-hover);
+
+}
+
+/* ===============================
+   Tables
+================================ */
+
+.table{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#f1f5f9;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* ===============================
+   Inputs
+================================ */
+
+.form-control{
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+}
+
+.form-control:focus{
+
+    box-shadow:none;
+
+    border-color:var(--primary);
+
+}
+
+/* ===============================
+   Badges
+================================ */
+
+.badge{
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+}
+
+/* ===============================
+   Footer
+================================ */
+
+footer{
+
+    margin-top:50px;
+
+    padding:20px;
+
+    text-align:center;
+
+    color:#64748b;
+
+}
+.toast-success {
+  background-color: #10b981 !important;
+}
+
+.toast-error {
+  background-color: #ef4444 !important;
+}
+
+.toast-info {
+  background-color: #3b82f6 !important;
+}
+
+.toast-warning {
+  background-color: #f59e0b !important;
+}

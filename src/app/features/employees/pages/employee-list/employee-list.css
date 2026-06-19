@@ -1,0 +1,295 @@
+
+.employee-page{
+
+    padding:20px;
+
+}
+
+/* HEADER */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+/* TABLE WRAPPER */
+
+.employee-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+
+}
+
+/* HEADER */
+
+.employee-table thead{
+
+    background:#f1f5f9;
+
+}
+
+.employee-table th{
+
+    text-align:left;
+
+    padding:14px;
+
+    font-size:14px;
+
+}
+
+/* ROWS */
+
+.employee-table td{
+
+    padding:14px;
+
+    border-top:1px solid #e2e8f0;
+
+}
+
+.employee-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+/* STATUS BADGES */
+
+.status{
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+}
+
+.Active{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+.Inactive{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+/* BUTTONS */
+
+.actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.btn{
+
+    padding:6px 12px;
+
+    border-radius:8px;
+
+    border:none;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+}
+
+/* EDIT */
+
+.edit{
+
+    background:#f59e0b;
+
+    color:white;
+
+}
+
+.edit:hover{
+
+    background:#d97706;
+
+}
+
+/* DELETE */
+
+.delete{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.delete:hover{
+
+    background:#b91c1c;
+
+}
+
+.employee-page {
+  padding: 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* TABLE WRAPPER (CARD STYLE) */
+.table-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* TABLE */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* HEADER */
+.data-table thead {
+  background: #f1f5f9;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: #334155;
+}
+
+/* ROWS */
+.data-table td {
+  padding: 14px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.data-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* BADGES */
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.Active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.Inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* BASE BUTTON */
+.btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+/* EDIT */
+.edit {
+  background: #f59e0b;
+  color: white;
+}
+
+.edit:hover {
+  background: #d97706;
+}
+
+/* DELETE */
+.delete {
+  background: #ef4444;
+  color: white;
+}
+
+.delete:hover {
+  background: #b91c1c;
+}
+
+/* HEADER BUTTON */
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+.search-bar {
+  margin-bottom: 15px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  outline: none;
+  transition: 0.2s;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+
+
