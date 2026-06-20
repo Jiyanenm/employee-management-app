@@ -1,5 +1,6 @@
 <div class="employee-page">
 
+    <!-- Header -->
     <div class="header">
 
         <h2>Employees</h2>
@@ -10,7 +11,7 @@
 
     </div>
 
-    <!-- 🔍 SEARCH BAR -->
+    <!-- Search -->
     <div class="search-bar">
 
         <input
@@ -22,63 +23,90 @@
 
     </div>
 
-    <div *ngIf="loading" class="loading">
-        Loading employees...
+    <!-- Empty State -->
+    <div
+        *ngIf="!loading && filteredEmployees.length === 0"
+        class="empty-state">
+
+        <div class="empty-icon">👥</div>
+
+        <h3>No Employees Found</h3>
+
+        <p>
+            No employees match your search criteria or no employees have been added yet.
+        </p>
+
+        <a routerLink="/employees/add" class="btn btn-primary">
+            Add Employee
+        </a>
+
     </div>
 
-    <div class="table-container">
+   <!-- Desktop Table -->
+<div class="table-container desktop-view"
+     *ngIf="!loading && filteredEmployees.length > 0">
 
-        <table class="data-table">
+    <table class="data-table">
 
-            <thead>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="hide-mobile">Email</th>
+                <th class="hide-mobile">Department</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Department</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
+        <tbody>
+            <tr *ngFor="let emp of paginatedEmployees">
 
-            </thead>
+                <td>{{ emp.name }}</td>
+                <td class="hide-mobile">{{ emp.email }}</td>
+                <td class="hide-mobile">{{ emp.department }}</td>
 
-            <tbody>
+                <td>
+                    <span class="badge" [ngClass]="emp.status">
+                        {{ emp.status }}
+                    </span>
+                </td>
 
-                <tr *ngFor="let emp of paginatedEmployees">
+                <td class="actions">
+                    <a [routerLink]="['/employees/edit', emp.id]" class="btn edit">Edit</a>
+                    <button class="btn delete" (click)="deleteEmployee(emp.id)">Delete</button>
+                </td>
 
-                    <td>{{ emp.name }}</td>
+            </tr>
+        </tbody>
 
-                    <td>{{ emp.email }}</td>
+    </table>
 
-                    <td>{{ emp.department }}</td>
+</div>
 
-                    <td>
-                        <span class="badge" [ngClass]="emp.status">
-                            {{ emp.status }}
-                        </span>
-                    </td>
 
-                    <td class="actions">
+<!-- Mobile Cards -->
+<div class="mobile-cards"
+     *ngIf="!loading && filteredEmployees.length > 0">
 
-                        <a
-                            [routerLink]="['/employees/edit', emp.id]"
-                            class="btn edit">
-                            Edit
-                        </a>
+    <div class="employee-card"
+         *ngFor="let emp of paginatedEmployees">
 
-                        <button
-                            (click)="deleteEmployee(emp.id)"
-                            class="btn delete">
-                            Delete
-                        </button>
+        <div class="card-header">
+            <h3>{{ emp.name }}</h3>
+            <span class="badge" [ngClass]="emp.status">
+                {{ emp.status }}
+            </span>
+        </div>
 
-                    </td>
+        <div class="card-body">
+            <p><strong>Email:</strong> {{ emp.email }}</p>
+            <p><strong>Department:</strong> {{ emp.department }}</p>
+        </div>
 
-                </tr>
-
-            </tbody>
-
-        </table>
+        <div class="card-actions">
+            <a [routerLink]="['/employees/edit', emp.id]" class="btn edit">Edit</a>
+            <button class="btn delete" (click)="deleteEmployee(emp.id)">Delete</button>
+        </div>
 
     </div>
 

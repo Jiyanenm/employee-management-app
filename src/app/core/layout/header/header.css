@@ -1,173 +1,268 @@
+.header {
+    height: 75px;
+    background: #ffffff;
 
-.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    height:75px;
+    padding: 0 30px;
 
-    background:#ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
 
-    display:flex;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-    align-items:center;
+/* Left */
 
-    justify-content:space-between;
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-    padding:0 30px;
+.logo {
+    width: 48px;
+    height: 48px;
 
-    border-bottom:1px solid #e2e8f0;
+    border-radius: 12px;
 
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
 
-    position:sticky;
+    color: white;
 
-    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    z-index:1000;
+    font-size: 22px;
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.header-left h4 {
+    margin: 0;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.header-left small {
+    color: #64748b;
+}
+
+/* Center */
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 420px;
+
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+
+    padding: 10px 15px;
+
+    outline: none;
+
+    transition: all .25s ease;
+}
+
+.search-box:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+}
+
+/* Right */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.welcome {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Logout Button */
+
+.btn-danger {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: transparent;
+    color: #dc3545;
+
+    border: 1px solid #dc3545;
+
+    border-radius: 8px;
+
+    padding: 8px 16px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all .25s ease;
+}
+
+.btn-danger:hover {
+
+    background: #dc3545;
+    color: white;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(220, 53, 69, .25);
 
 }
 
-.header-left{
+/* ===========================
+   Tablet
+=========================== */
 
-    display:flex;
+@media (max-width:992px) {
 
-    align-items:center;
+    .header {
 
-    gap:15px;
+        flex-wrap: wrap;
 
-}
+        height: auto;
 
-.logo{
+        padding: 15px;
 
-    width:50px;
-
-    height:50px;
-
-    border-radius:12px;
-
-    background:#2563eb;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:24px;
-
-}
-
-.header-left h4{
-
-    margin:0;
-
-    font-weight:700;
-
-}
-
-.header-left small{
-
-    color:#64748b;
-
-}
-
-.header-center{
-
-    flex:1;
-
-    display:flex;
-
-    justify-content:center;
-
-    padding:0 40px;
-
-}
-
-.search-box{
-
-    width:100%;
-
-    max-width:450px;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:12px;
-
-    padding:10px 16px;
-
-    outline:none;
-
-    transition:.3s;
-
-}
-
-.search-box:focus{
-
-    border-color:#2563eb;
-
-    box-shadow:0 0 0 4px rgba(37,99,235,.1);
-
-}
-
-.header-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
-}
-
-.user-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-    text-align:right;
-
-}
-
-.welcome{
-
-    font-size:12px;
-
-    color:#64748b;
-
-}
-
-.btn-danger{
-
-    border-radius:10px;
-
-    padding:8px 18px;
-
-}
-
-@media(max-width:992px){
-
-    .header{
-
-        flex-wrap:wrap;
-
-        height:auto;
-
-        padding:15px;
-
-        gap:15px;
+        gap: 15px;
 
     }
 
-    .header-center{
+    .header-center {
 
-        width:100%;
+        width: 100%;
 
-        padding:0;
+        order: 3;
 
-        order:3;
+        padding: 0;
+
+    }
+
+    .search-box {
+
+        max-width: 100%;
 
     }
 
 }
 
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width:768px) {
+
+    .header {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+
+    }
+
+    .header-left {
+
+        justify-content: center;
+
+    }
+
+    .header-center {
+
+        order: 2;
+
+    }
+
+    .header-right {
+
+        order: 3;
+
+        justify-content: space-between;
+
+        width: 100%;
+
+    }
+
+    .user-info {
+
+        text-align: left;
+
+    }
+
+    .btn-danger {
+
+        width: auto;
+
+        min-width: 110px;
+
+    }
+
+}
+
+/* Small phones */
+
+@media (max-width:480px) {
+
+    .header {
+
+        padding: 12px;
+
+    }
+
+    .logo {
+
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+
+    }
+
+    .header-left h4 {
+
+        font-size: 18px;
+
+    }
+
+    .search-box {
+
+        font-size: 13px;
+
+    }
+
+    .btn-danger {
+
+        padding: 8px 12px;
+        font-size: 12px;
+
+    }
+
+}

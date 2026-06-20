@@ -15,9 +15,13 @@ export class AuthService {
 
   user$ = authState(this.auth);
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
-  }
+login(credentials: { email: string; password: string }) {
+  return signInWithEmailAndPassword(
+    this.auth,
+    credentials.email,
+    credentials.password
+  );
+}
 
   logout() {
     return signOut(this.auth);

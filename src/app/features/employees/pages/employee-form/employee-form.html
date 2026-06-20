@@ -1,4 +1,3 @@
-
 <div class="form-page">
 
     <div class="form-card">
@@ -7,20 +6,28 @@
 
         <p class="subtitle">Employee details form</p>
 
-        <form (ngSubmit)="saveEmployee()" #empForm="ngForm">
+        <form (ngSubmit)="saveEmployee(empForm)" #empForm="ngForm">
 
+            <!-- FULL NAME -->
             <div class="form-group">
 
-                <label>Name</label>
+                <label>Full Name</label>
 
                 <input
                     type="text"
                     name="name"
                     [(ngModel)]="employee.name"
-                    required>
+                    required
+                    #name="ngModel"
+                    [class.invalid]="name.invalid && name.touched">
+
+                <div *ngIf="name.invalid && name.touched" class="error">
+                    Full name is required
+                </div>
 
             </div>
 
+            <!-- EMAIL -->
             <div class="form-group">
 
                 <label>Email</label>
@@ -29,10 +36,17 @@
                     type="email"
                     name="email"
                     [(ngModel)]="employee.email"
-                    required>
+                    required
+                    #email="ngModel"
+                    [class.invalid]="email.invalid && email.touched">
+
+                <div *ngIf="email.invalid && email.touched" class="error">
+                    Email is required
+                </div>
 
             </div>
 
+            <!-- DEPARTMENT -->
             <div class="form-group">
 
                 <label>Department</label>
@@ -41,33 +55,62 @@
                     type="text"
                     name="department"
                     [(ngModel)]="employee.department"
-                    required>
+                    required
+                    #department="ngModel"
+                    [class.invalid]="department.invalid && department.touched">
+
+                <div *ngIf="department.invalid && department.touched" class="error">
+                    Department is required
+                </div>
 
             </div>
 
+            <!-- STATUS -->
             <div class="form-group">
 
                 <label>Status</label>
 
-                <select name="status" [(ngModel)]="employee.status">
+                <select
+                    name="status"
+                    [(ngModel)]="employee.status">
 
                     <option value="Active">Active</option>
-
                     <option value="Inactive">Inactive</option>
 
                 </select>
 
             </div>
 
-            <button type="submit" class="btn-submit">
+            <!-- BUTTONS -->
+            <div class="form-actions">
 
-                {{ isEditMode ? 'Update Employee' : 'Save Employee' }}
+                <button
+                    type="submit"
+                    class="btn-submit"
+                    [disabled]="empForm.invalid || saving">
 
-            </button>
+                    <span *ngIf="!saving">
+                        {{ isEditMode ? 'Update Employee' : 'Save Employee' }}
+                    </span>
+
+                    <span *ngIf="saving" class="spinner"></span>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-clear"
+                    (click)="resetForm()"
+                    [disabled]="saving">
+
+                    Clear
+
+                </button>
+
+            </div>
 
         </form>
 
     </div>
 
 </div>
-

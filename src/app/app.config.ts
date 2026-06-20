@@ -16,9 +16,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
   provideToastr({
-    timeOut: 3000,
-    positionClass: 'toast-top-right',
-    preventDuplicates: true
+  positionClass: 'toast-top-right',
+  closeButton: true,
+  progressBar: true,
+  preventDuplicates: true,
+  timeOut: 3000
   }),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),

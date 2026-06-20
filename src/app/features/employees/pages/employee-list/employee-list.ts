@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../../core/services/toast.service';
+import { LoadingService } from '../../../../core/services/loading.service';
 import { EmployeeService } from '../../../../core/services/employee.service';
 import { Employee } from '../../models/employee.model';
 
@@ -26,7 +27,7 @@ departments = 0;
 
   constructor(
   private employeeService: EmployeeService,
-  private toast: ToastService
+  private toast: ToastService,  private loadingService: LoadingService
 ) {}
 
   ngOnInit(): void {
@@ -34,28 +35,56 @@ departments = 0;
   }
 
 loadEmployees(): void {
+
   this.loading = true;
+  this.loadingService.show();
 
   this.employeeService.getAll().subscribe({
+
     next: (data) => {
+
       this.employees = data ?? [];
       this.filteredEmployees = [...this.employees];
+
+      // Dashboard statistics
+      this.totalEmployees = this.employees.length;
+
+this.activeEmployees =
+  this.employees.filter(e => e.status === 'Active').length;
+
+this.inactiveEmployees =
+  this.employees.filter(e => e.status === 'Inactive').length;
+      this.departments =
+        new Set(this.employees.map(e => e.department)).size;
+
       this.loading = false;
+      this.loadingService.hide();
+
     },
+
     error: (err) => {
+
       console.error(err);
+
       this.employees = [];
       this.filteredEmployees = [];
+
       this.loading = false;
+      this.loadingService.hide();
+
+      this.toast.error('Unable to load employees.');
+
     }
+
   });
+
 }
-pageSize = 5;
+pageSize = 10;
 currentPage = 0;
 
 get paginatedEmployees() {
-  const start = this.currentPage * this.pageSize;
-  return this.filteredEmployees.slice(start, start + this.pageSize);
+    const start = this.currentPage * this.pageSize;
+    return this.filteredEmployees.slice(start, start + this.pageSize);
 }
 onSearch(): void {
   const term = this.searchTerm.toLowerCase().trim();
@@ -77,17 +106,21 @@ emp.department?.toLowerCase().includes(term)
     if (!id) return;
     if (!confirm('Delete employee?')) return;
 
+this.loadingService.show();
+
 this.employeeService.delete(id)
   .then(() => {
 
-    this.toast.success('Employee deleted');
+    this.toast.success('Employee deleted successfully.');
 
     this.loadEmployees();
 
   })
   .catch(() => {
 
-    this.toast.error('Failed to delete employee');
+    this.loadingService.hide();
+
+    this.toast.error('Failed to delete employee.');
 
   });
   }

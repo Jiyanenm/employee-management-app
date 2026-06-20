@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ToastService } from '../../../../core/services/toast.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { firstValueFrom } from 'rxjs';
 import { EmployeeService } from '../../../../core/services/employee.service';
 import { Employee } from '../../models/employee.model';
 
@@ -31,7 +31,7 @@ export class EmployeeForm implements OnInit {
     private employeeService: EmployeeService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toast: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -46,49 +46,60 @@ export class EmployeeForm implements OnInit {
           this.employee = data;
         },
         error: () => {
-          this.toastr.error('Failed to load employee');
+          this.toast.error('Failed to load employee');
         }
       });
     }
   }
 
-saveEmployee(): void {
+saving = false;
 
-  this.loading = true;
+async saveEmployee(empForm: any): Promise<void> {
 
-  if (this.isEditMode) {
+    if (this.saving) return;
 
-    this.employee.id = this.employeeId;
+    if (empForm.invalid) {
+        Object.values(empForm.controls).forEach((control: any) => {
+            control.markAsTouched();
+        });
+        return;
+    }
 
-    this.employeeService.update(this.employee)
-      .then(() => {
+    this.saving = true;
 
-        this.toastr.success('Employee updated successfully');
+    const request = this.isEditMode
+        ? this.employeeService.update(this.employee)
+        : this.employeeService.add(this.employee);
+
+    request
+.then(() => {
+
+    this.toast.success(
+        this.isEditMode ? 'Employee updated' : 'Employee added'
+    );
+
+    setTimeout(() => {
         this.router.navigate(['/employees']);
+    }, 500);
 
-      })
-      .catch(() => {
+})
+.catch(() => {
 
-        this.toastr.error('Failed to update employee');
+    this.toast.error('Failed to save employee');
 
-      })
-      .finally(() => this.loading = false);
+})
+.finally(() => {
 
-  } else {
+    this.saving = false;
 
-    this.employeeService.add(this.employee)
-      .then(() => {
-
-        this.toastr.success('Employee added successfully');
-        this.router.navigate(['/employees']);
-
-      })
-      .catch(() => {
-
-        this.toastr.error('Failed to add employee');
-
-      })
-      .finally(() => this.loading = false);
-  }
+});
+}
+resetForm(): void {
+    this.employee = {
+        name: '',
+        email: '',
+        department: '',
+        status: 'Active'
+    };
 }
 }

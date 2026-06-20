@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-
+import { ToastService } from '../../../core/services/toast.service';
 @Component({
   standalone: true,
   imports: [
@@ -15,22 +15,47 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class Login {
 
-  email = '';
-  password = '';
+    loading = false;
 
-  constructor(
+    credentials = {
+        email: '',
+        password: ''
+    };
+
+constructor(
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private toast: ToastService
+) {}
 
-  login(): void {
-    this.authService.login(this.email, this.password)
-      .then(() => {
+    login(form: any): void {
+
+        if (form.invalid) {
+            Object.values(form.controls).forEach((c: any) => c.markAsTouched());
+            return;
+        }
+
+       this.loading = true;
+
+this.authService.login(this.credentials)
+.then(() => {
+
+    this.toast.success('Login successful');
+
+    setTimeout(() => {
         this.router.navigate(['/employees']);
-      })
-      .catch(err => {
-        console.error(err);
-        alert('Invalid login');
-      });
-  }
+    }, 500);
+
+})
+.catch(() => {
+
+    this.toast.error('Invalid email or password');
+
+})
+.finally(() => {
+
+    this.loading = false;
+
+});
+    }
 }
