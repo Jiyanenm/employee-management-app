@@ -246,3 +246,4 @@ Authentication features verified successfully:
 ```bash
 npm install
 ng serve
+npm test -- --watch=false --browsers=ChromeHeadless 

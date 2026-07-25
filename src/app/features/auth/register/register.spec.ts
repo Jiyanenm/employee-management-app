@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Register } from './register';
+import { AuthService } from '../../../core/services/auth.service';
+import { EmployeeService } from '../../../core/services/employee.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 describe('Register', () => {
   let component: Register;
@@ -8,7 +10,33 @@ describe('Register', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Register]
+      imports: [
+        Register
+      ],
+      providers: [
+        {
+          provide: AuthService,
+          useValue: {
+            register: jasmine.createSpy('register')
+              .and.returnValue(Promise.resolve())
+          }
+        },
+        {
+          provide: EmployeeService,
+          useValue: {
+            addEmployee: jasmine.createSpy('addEmployee')
+          }
+        },
+        {
+          provide: ToastService,
+          useValue: {
+            success: jasmine.createSpy('success'),
+            error: jasmine.createSpy('error'),
+            warning: jasmine.createSpy('warning'),
+            info: jasmine.createSpy('info')
+          }
+        }
+      ]
     })
     .compileComponents();
 

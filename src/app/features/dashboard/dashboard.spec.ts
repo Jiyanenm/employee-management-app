@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { Dashboard } from './dashboard';
+import { EmployeeService } from '../../core/services/employee.service';
 
 describe('Dashboard', () => {
   let component: Dashboard;
@@ -8,7 +9,18 @@ describe('Dashboard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Dashboard]
+      imports: [
+        Dashboard
+      ],
+      providers: [
+        {
+          provide: EmployeeService,
+          useValue: {
+            getAll: jasmine.createSpy('getAll')
+              .and.returnValue(of([]))
+          }
+        }
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainLayout } from './main-layout';
+import { AuthService } from '../../../core/services/auth.service';
+import { provideRouter } from '@angular/router';
 
 describe('MainLayout', () => {
   let component: MainLayout;
@@ -8,7 +10,19 @@ describe('MainLayout', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainLayout]
+      imports: [
+        MainLayout
+      ],
+      providers: [
+        provideRouter([]),
+        {
+          provide: AuthService,
+          useValue: {
+            logout: jasmine.createSpy('logout'),
+            user: null
+          }
+        }
+      ]
     })
     .compileComponents();
 
