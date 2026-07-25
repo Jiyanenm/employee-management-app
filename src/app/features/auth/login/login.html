@@ -64,17 +64,28 @@
 
     </div>
 
-    <!-- LOGIN BUTTON -->
+<!-- LOGIN BUTTON -->
 <button
-    type="submit"
-    class="btn-submit"
-    [disabled]="loginForm.invalid || loading">
+  type="submit"
+  class="btn-submit"
+  [disabled]="loginForm.invalid || loading">
 
-    <span *ngIf="!loading">Login</span>
-
-    <span *ngIf="loading">Logging in...</span>
+  <span *ngIf="!loading">Login</span>
+  <span *ngIf="loading">Logging in...</span>
 
 </button>
+
+<div class="login-links">
+
+    <a (click)="createAccount()">
+        Create Account
+    </a>
+
+    <a (click)="forgotPassword()">
+        Forgot Password?
+    </a>
+
+</div>
 
 </form>
 

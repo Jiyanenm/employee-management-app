@@ -125,3 +125,19 @@ input.invalid {
     cursor: not-allowed;
     opacity: 0.8;
 }
+.login-links{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.login-links a{
+    color:#1976d2;
+    cursor:pointer;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.login-links a:hover{
+    text-decoration:underline;
+}
