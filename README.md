@@ -109,6 +109,23 @@ https://employee-management-app-tau-ashen.vercel.app/
 
 ---
 
+## 🔄 CI/CD Pipeline
+
+The project uses **GitHub Actions** for continuous integration and automated validation.
+
+### Pipeline Workflow
+
+- Code pushed to the `main` branch triggers the pipeline
+- Dependencies are installed automatically
+- Angular production build is executed
+- Automated tests are executed
+- Successful builds can be deployed through Vercel
+
+### Pipeline Configuration
+
+
+---
+
 # 🛠 Tech Stack
 
 - Angular 20
@@ -118,6 +135,17 @@ https://employee-management-app-tau-ashen.vercel.app/
 - HTML5 / CSS3
 - Vercel Hosting
 
+.github/
+└── workflows/
+└── ci-cd.yml
+
+
+### Benefits
+
+- Prevents broken builds from being deployed
+- Validates code changes automatically
+- Supports future integration with Test Automation Framework
+- Enables continuous delivery workflow
 ---
 
 # 📁 Project Structure
@@ -137,6 +165,7 @@ src/
 │
 └── pages/
 └── employee-list/
+
 
 ## 📁 Project Structure
 
