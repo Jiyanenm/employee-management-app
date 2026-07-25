@@ -17,6 +17,7 @@ import { ToastService } from '../../../core/services/toast.service';
 export class Login {
 
   loading = false;
+  showPassword = false;
 
   credentials = {
     email: '',
@@ -28,6 +29,10 @@ export class Login {
     private router: Router,
     private toast: ToastService
   ) {}
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   login(form: any): void {
 
